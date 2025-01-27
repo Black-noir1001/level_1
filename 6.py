@@ -5,4 +5,4 @@ def count_word(string):
         if sr[i] == " " :
             count += 1
     print(count)
-count_word("hi si loka goka")
+count_word("hi si loka goka") # 4
