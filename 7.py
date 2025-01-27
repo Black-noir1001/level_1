@@ -1,4 +1,4 @@
-def checker_list(list):
+def checker_list (list):
     if len(set(list)) == len(list):
         return "this list is clear"
     else :
