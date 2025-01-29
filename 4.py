@@ -1,126 +1,89 @@
 import os
 import platform
-import json
-import datetime
-import time
+import time 
 
-ti = datetime.datetime.now().strftime("%H:%M:%S")
-da = datetime.datetime.now().strftime("%Y/%m/%d")
-
-f = open("user_data.json" , "r+")
-data = json.load(f)
-
-
-def re_fun():
-    ch = input("1.contiune or 2.Exit :> ")
-    if ch == "1":
-        opera_fun()
-    else:
-        exit()
-
-def write_fun():
-    with open("user_data.json", "w") as f:
-        json.dump(data, f, indent=4)
-
-def clean_screen():
+def clear():
     plat = platform.system()
     if plat == "Windows" :
         os.system("cls")
     elif plat == "Linux" :
         os.system("clear")
     else :
-        p("not_support")
+        p("not_support") 
 
-p  = print 
-i = 0
+p  = print
+screen_main = """
+*** Manger Tasks *** \n
+1. Add tasks in list
+2. veiw the list
+3. mark task as complite
+4. Clean the list
+5. exit"""
 
-massage_screen = """
-++++++++++++++++++++
-+  Welcome IN ATM  +
-+       v1.0       +
-++++++++++++++++++++
-"""
-info_screen = """
-+++++++++++++++++++++++++
-   Welcome  
-    Your have 
-++++++++++++++++++++++++++
+def write_fun(ty):
+    fil =  open("tasks.txt" ,  "a+")
+    task = input("Add Task :> ")
+    p("adding is success")
+    fil.write(task + f"\t ({ty}) \n")
+    fil.close()
 
-1. Withdraw
-2. Deposit
-3. Account Statement
-4. Your Balance
-5. Exit
-"""
+def read_fun():
+    fil =  open("tasks.txt" ,  "r")
+    clear()
+    p("Your Taskes : ")
+    p(fil.read())
+    fil.close()  
 
-def opera_fun():
-    clean_screen()
-    p(info_screen)
-    user_ch = input("Enter :> ")
-    if user_ch == "1":
-        yo = int(input("Enter your money to withdraw :> "))
-        if yo > data[id_card]["balane"] :
-            p("please try again you dont have this balance in you accont")
-            yo = int(input("Enter your money to withdraw :> "))
-        else :
-            p("your operation is done sucess . ")
-            data[id_card]["balane"] -= yo
-            data[id_card]["action"].append(f"Withdraw :> -{yo} ({ti})  ({da})")
-            write_fun()
-            p(f"Your account has now {data[id_card]['balane']} $")
-            re_fun()
-    elif user_ch == "2" :
-        dep = input("Enter id of persone to deposit in her account :> ")
-        if dep in data and data[dep] != data[id_card]:
-            mo = int(input("Enter your money to deposit :> "))
-            if mo > data[id_card]["balane"] :
-                while mo > data[id_card]["balane"] :
-                    p("please try again you dont have this balance in you accont")
-                    mo = int(input("Enter your money to withdraw :> "))
-            else :
-                data[id_card]["balane"] -= mo
-                data[id_card]["action"].append(f"Deposit :> -{mo} ({ti}  ({da}))")
-                data[dep]["balane"] += mo
-                data[dep]["action"].append(f"Deposit for {id_card} :> +{mo} ({ti})  ({da})")
-                write_fun()
-                p(f'you now have {data[id_card]["balane"]} \nyour deposit is done sucess ..')
-                re_fun()
-                
-        elif dep == data[id_card]:
-            p("you can't do deposit to you account")
-        else:
-            p("the id of persone is not correct , pleace try later")
-    elif  user_ch == "3" :
-        p(f"Your Account Statement:\n{' , '.join(data[id_card]['action'])}")
+def edit_fun():
+    ed = int(input("Enter the task number to edit: ")) 
+    with open("tasks.txt", "r") as fil:
+        l_t = fil.readlines()
+    if 1 <= ed <= len(l_t):
+        l = l_t[ed - 1].strip()
+        l = l.replace("F", "T")
+        l_t[ed - 1] = l + "\n"
+        with open("tasks.txt", "w") as fil:
+            fil.writelines(l_t)
+        print("Task updated successfully!")
+    else:
+        print("Invalid task number.")
+
+def clean_fun():
+    with open("tasks.txt" , "w") as lif :
+        lif.write("")
+        lif.close()
+        p("yous list is now clean")
+
+def re_fun():
+    re = input("1.Contuine or 2.Exit :> ")
+    if re == "Contuine" or re == "1":
+        manger_list()
+    elif re == "Exit" or re == "2" :
+        manger_list()
+    else:
         re_fun()
-    elif user_ch == "4" :
-        p(f'you account has {data[id_card]["balane"]} $')
+
+def manger_list():
+    clear()
+    p(screen_main)
+    user = input("Enter :> ")
+    if user== "1" :
+        write_fun("F")
         re_fun()
-    elif user_ch == "5" :
+    elif user == "2" :
+        read_fun()
+        re_fun()
+    elif user == "3" :
+        edit_fun()
+        re_fun() 
+    elif user == "4" :
+        clean_fun()
+        re_fun()
+    elif user == "5" :
         exit()
-p(massage_screen)
-id_card = str(input("Enter you id master Card :> "))
-pa_card = str(input("Enter you password master Card :> "))
+    else :
+        p("please try again you input is problem , after 3 secound")
+        time.sleep(3)
+        manger_list()
 
-try :
-    if id_card in data and pa_card == data[id_card]["passw"]  and data[id_card]["block"] == False:
-            opera_fun()
-    elif id_card in data and  pa_card != data[id_card]["passw"] :
-        while i < 2 :
-            p(">> your pass is ucorrect please try again")
-            pa_card = str(input("Enter you password master Card :> "))
-            if id_card in data and pa_card == data[id_card]["passw"] and data[id_card]["block"] == False :
-                opera_fun()
-                break
-            elif i == 1 and   pa_card != data[id_card]["passw"] :
-                p("your card id has band , please back to bank")
-                data[id_card]["block"] = True
-                write_fun()
-            i += 1
-    elif data[id_card]["block"] == True :
-        p("your account has band , please back to bank")
-    else: 
-        p(" >> iam sorry , please try again you id or password is uncorrect")
-except KeyError:
-    print("you should make input intgers ,try again")
-    time.sleep(1)
+manger_list()
