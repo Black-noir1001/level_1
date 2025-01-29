@@ -24,10 +24,10 @@ def re_fun():
             exit() 
         else :
             p("try again")   
-            
+
 def calculator(num1 , num2 , opra):
     try :
-        if opra == "+" :
+        if opra == "+":
             return num1 + num2
         elif opra == "-" :
             return num1 - num2
