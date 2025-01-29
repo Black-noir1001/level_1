@@ -2,15 +2,22 @@ import os
 import platform
 import json
 import datetime
+import time
 
 ti = datetime.datetime.now().strftime("%H:%M:%S")
+da = datetime.datetime.now().strftime("%Y/%m/%d")
+
 f = open("user_data.json" , "r+")
 data = json.load(f)
 
 
-def reco_fun():
+def re_fun():
+    ch = input("1.contiune or 2.Exit :> ")
+    if ch == "1":
+        opera_fun()
+    else:
+        exit()
 
-    ...
 def write_fun():
     with open("user_data.json", "w") as f:
         json.dump(data, f, indent=4)
@@ -58,10 +65,10 @@ def opera_fun():
         else :
             p("your operation is done sucess . ")
             data[id_card]["balane"] -= yo
-            data[id_card]["action"].append(f"Withdraw :> -{yo} ({ti})")
-
+            data[id_card]["action"].append(f"Withdraw :> -{yo} ({ti})  ({da})")
             write_fun()
-            p(f"Your account has now {data[id_card]['balane']}")
+            p(f"Your account has now {data[id_card]['balane']} $")
+            re_fun()
     elif user_ch == "2" :
         dep = input("Enter id of persone to deposit in her account :> ")
         if dep in data and data[dep] != data[id_card]:
@@ -72,20 +79,23 @@ def opera_fun():
                     mo = int(input("Enter your money to withdraw :> "))
             else :
                 data[id_card]["balane"] -= mo
-                data[id_card]["action"].append(f"Deposit :> -{mo} ({ti})")
+                data[id_card]["action"].append(f"Deposit :> -{mo} ({ti}  ({da}))")
                 data[dep]["balane"] += mo
-                data[dep]["action"].append(f"Deposit for {id_card} :> +{mo} ({ti})")
+                data[dep]["action"].append(f"Deposit for {id_card} :> +{mo} ({ti})  ({da})")
                 write_fun()
                 p(f'you now have {data[id_card]["balane"]} \nyour deposit is done sucess ..')
-
+                re_fun()
+                
         elif dep == data[id_card]:
             p("you can't do deposit to you account")
         else:
             p("the id of persone is not correct , pleace try later")
     elif  user_ch == "3" :
-        p(f"Your Account Statement:\n{data[id_card]['action']}")
+        p(f"Your Account Statement:\n{' , '.join(data[id_card]['action'])}")
+        re_fun()
     elif user_ch == "4" :
         p(f'you account has {data[id_card]["balane"]} $')
+        re_fun()
     elif user_ch == "5" :
         exit()
 p(massage_screen)
@@ -112,4 +122,5 @@ try :
     else: 
         p(" >> iam sorry , please try again you id or password is uncorrect")
 except KeyError:
-    print("you should make input intgers")
+    print("you should make input intgers ,try again")
+    time.sleep(1)

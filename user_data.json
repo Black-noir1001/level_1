@@ -3,13 +3,16 @@
         "name": "loka",
         "id": "clint1_1590",
         "passw": "1234",
-        "balane": 3900,
+        "balane": 50000,
         "block": false,
         "opened": "2025/5/6",
         "action": [
             "Deposit :> -500 (01:12:58)",
             "Deposit for 1590 :> +500 (01:12:58)",
-            "Deposit :> -600 (01:14:11)"
+            "Deposit :> -600 (01:14:11)",
+            "Deposit :> -1000 (02:12:58  (2025/01/29))",
+            "Deposit :> -200 (02:14:22  (2025/01/29))",
+            "Withdraw :> -2700 (02:14:56)  (2025/01/29)"
         ]
     },
     "4430": {
@@ -27,9 +30,12 @@
         "name": "farouk",
         "id": "clint3_5555",
         "passw": "0100",
-        "balane": 3000,
+        "balane": 4200,
         "block": false,
         "opened": "2019/1/1",
-        "action": []
+        "action": [
+            "Deposit for 1590 :> +1000 (02:12:58)  (2025/01/29)",
+            "Deposit for 1590 :> +200 (02:14:22)  (2025/01/29)"
+        ]
     }
 }
