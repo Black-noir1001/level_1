@@ -1,7 +1,7 @@
+import datetime
+import json
 import os
 import platform
-import json
-import datetime
 import time
 
 ti = datetime.datetime.now().strftime("%H:%M:%S")
