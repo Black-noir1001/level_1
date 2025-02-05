@@ -9,6 +9,7 @@ scr = """
 """
 p = print
 list_op = ["*","-","+","/","^","//"]
+
 def clear_screen():
     plat = platform.system()
     if plat == "Windows" :
