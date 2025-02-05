@@ -70,6 +70,6 @@ inp3 = input("Enter secound number >>> ")
 
 if isinstance(inp1 , int) and isinstance(inp3 , int) and inp2 in list_op:
     p (f"the result {inp1} {inp2} {inp3} = {calculator(inp1,inp3,inp2)}")
-else :
+else  :
     print("your input is uncorrect , pleace try again")
     re_fun()
