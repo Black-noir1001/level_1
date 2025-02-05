@@ -1,7 +1,14 @@
 import os
 import platform
 
+scr = """
+```````````````````````````````
+``  Welcome in Calculator    ``
+`` >>   ( + * % / - ^ )      ``
+```````````````````````````````
+"""
 p = print
+list_op = ["*","-","+","/","^","//"]
 def clear_screen():
     plat = platform.system()
     if plat == "Windows" :
@@ -16,10 +23,15 @@ def re_fun():
         ch = input("1.Contiune or 2.Exit :> ")
         if ch == "1" :
             clear_screen()
-            inp1 = int(input("Enter frist number >>> "))
+            p(scr)
+            inp1 = input("Enter frist number >>> ")
             inp2 = input("Enter opration >>> ")
-            inp3 = int(input("Enter secound number >>> "))
-            p (f"the result : {calculator(inp1,inp3,inp2)}")
+            inp3 = input("Enter secound number >>> ")
+            if isinstance(inp1 , int) and isinstance(inp3 , int) and inp2 in list_op:
+                p (f"the result {inp1} {inp2} {inp3} = {calculator(inp1,inp3,inp2)}")
+            else :
+                print("your input is uncorrect , pleace try again")
+                re_fun()
         elif ch == "2" :
             exit() 
         else :
@@ -39,13 +51,24 @@ def calculator(num1 , num2 , opra):
             return num1 % num2
         elif opra == "//" :
             return num1 // num2
+        elif opra == "^" :
+            result = 1
+            for i in range(num2):
+                result *= num1
+            return result
         else :
             return "please try agin"
     except ValueError:
         print("you input is uncorrect , please try again")
 
-inp1 = int(input("Enter frist number >>> "))
+clear_screen()
+p(scr)
+inp1 = input("Enter frist number >>> ")
 inp2 = input("Enter opration >>> ")
-inp3 = int(input("Enter secound number >>> "))
-p (f"the result : {calculator(inp1,inp3,inp2)}")
-re_fun()
+inp3 = input("Enter secound number >>> ")
+
+if isinstance(inp1 , int) and isinstance(inp3 , int) and inp2 in list_op:
+    p (f"the result {inp1} {inp2} {inp3} = {calculator(inp1,inp3,inp2)}")
+else :
+    print("your input is uncorrect , pleace try again")
+    re_fun()
