@@ -10,7 +10,6 @@ da = datetime.datetime.now().strftime("%Y/%m/%d")
 f = open("user_data.json", "r+")
 data = json.load(f)
 
-
 def re_fun():
     ch = input("1.contiune or 2.Exit :> ")
     if ch == "1":
