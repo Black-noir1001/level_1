@@ -83,7 +83,7 @@ def manger_list():
         exit()
     else :
         p("please try again you input is problem , after 3 secound")
-        time.sleep(3)
+        time.sleep(2)
         manger_list()
 
 manger_list()
