@@ -46,7 +46,7 @@ def main():
         elif user_ch == "rock" and compl_ch == "paper" :
             p("you lost -10 ")
             score -= 10
-            lose -= 1
+            lose += 1
         elif user_ch == "rock" and compl_ch == "scissors" :
             p("you win +10 ")
             score += 10
@@ -54,7 +54,7 @@ def main():
         elif user_ch == "paper" and compl_ch == "scissors" :
             p("you lost -10 ")
             score -= 10
-            lose -= 1
+            lose += 1
         elif user_ch == "paper" and compl_ch == "rock" :
             p("you win +10 ")
             score += 10
@@ -62,7 +62,7 @@ def main():
         elif user_ch == "scissors" and compl_ch == "rock" :
             p("you lost -10 ")
             score -= 10
-            lose -= 1
+            lose += 1
         elif user_ch == "scissors" and compl_ch == "paper" :
             p("you win +10 ")
             score += 10
@@ -71,12 +71,15 @@ def main():
             p("(:> you input is uncorrect")
             re_fun()
         i += 1
-    clean_screen()
+    p("---------- Finsh ----------")
 
     if win > lose :
         p(f"you win in game 🏆 \nyour score({score})")
+        re_fun()
     elif win == lose :
         p(f"you Equality ️🤝\nyour score({score})")
+        re_fun()
     else:
         p(f"you lose in game 😞\nyour score({score})")
+        re_fun()
 main()
