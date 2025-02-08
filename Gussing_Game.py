@@ -2,7 +2,7 @@ import os
 import platform
 import random
 p = print
-def clean_screen():
+def clean_screen ():
     plat = platform.system()
     if plat == "Windows" :
         os.system("cls")
