@@ -2,7 +2,7 @@ import random
 import platform
 import os
 
-with open("your_pass.txt" , "a") as info :
+with open("your_pass.txt" , "a") as info:
     def clean_screen():
         plat = platform.system()
         if plat == "Windows" :
