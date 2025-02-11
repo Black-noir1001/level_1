@@ -36,20 +36,39 @@ class x_o :
             game = x_o(user1)
             game.clean()
             for i in range(4):
-                list_range = [1,2,3,4,5,6,7,8,9]
+                list = [1,2,3,4,5,6,7,8,9]
                 sc = f"""
-                    {list_range[0]} | {list_range[1]} | {list_range[2]}
+                    {list[0]} | {list[1]} | {list[2]}
                     ----------
-                    {list_range[3]} | {list_range[4]} | {list_range[5]}
+                    {list[3]} | {list[4]} | {list[5]}
                     ----------
-                    {list_range[6]} | {list_range[7]} | {list_range[8]}
+                    {list[6]} | {list[7]} | {list[8]}
                 """
                 play_one = int(input(f"player 1 {game.player1} :>> "))
-                list_range[play_one-1] = game.player1
+                list[play_one-1] = game.player1
                 play_two = int(input(f"player 2 {game.player2} :>> ")) 
-                list_range[play_two-1] = game.player2
+                list[play_two-1] = game.player2
                 game.clean()
                 print(sc)
+            if list[0] == list[1] == list[2] or list[3] == list[4] == list[5] or list[6] == list[7] == list[8]:
+                print(f"{list[]} is winer ")
+            elif list[0] == list[3] == list[5] or list[1] == list[4] == list[8] or list[2] == list[5] == list[8]:
+                print(f"{list[]} is winer ")
+            elif list[0] == list[4] == list[8] or list[2] == list[4] == list[6]:
+                print(f"{list[]} is winer ")
+            else:
+                con = input("no winer , 1 . player again 2. Exit :> ")
+                if con == "1" :
+                    game.main()
+                elif con == "2" :
+                    exit()
+                else:
+                    while con != "1" or con != "2" :
+                        con = input("no winer , 1 . player again 2. Exit :> ")
+                        if con == "1" :
+                            game.main()
+                        elif con == "2" :
+                            exit()
         elif pt == "2":
             exit()
         else :
