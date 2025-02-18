@@ -50,12 +50,21 @@ class x_o :
                 list[play_two-1] = game.player2
                 game.clean()
                 print(sc)
-            if list[0] == list[1] == list[2] or list[3] == list[4] == list[5] or list[6] == list[7] == list[8]:
-                print(f"{list[]} is winer ")
-            elif list[0] == list[3] == list[5] or list[1] == list[4] == list[8] or list[2] == list[5] == list[8]:
-                print(f"{list[]} is winer ")
-            elif list[0] == list[4] == list[8] or list[2] == list[4] == list[6]:
-                print(f"{list[]} is winer ")
+
+            if list[0] == list[1] == list[2]:
+                print(f"{list[1]} is winer ")
+            elif  list[3] == list[4] == list[5]:
+                print(f"{list[4]} is winer ")
+            elif list[6] == list[7] == list[8]:
+                print(f"{list[7]} is winer ")            
+            elif list[0] == list[3] == list[6] :
+                print(f"{list[3]} is winer ")
+            elif  list[1] == list[4] == list[7] :
+                print(f"{list[4]} is winer ")
+            elif  list[2] == list[5] == list[8] :
+                print(f"{list[5]} is winer ")
+            elif list[0] == list[4] == list[8] or list[2] == list[4] == list[6] :
+                print(f"{list[4]} is winer ")
             else:
                 con = input("no winer , 1 . player again 2. Exit :> ")
                 if con == "1" :
