@@ -13,7 +13,7 @@
         "id": "clint2_4430",
         "passw": "0000",
         "balane": 1001550,
-        "block": true,
+        "block": false,
         "opened": "2010/12/6",
         "action": []
     },
