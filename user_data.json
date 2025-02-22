@@ -4,7 +4,7 @@
         "id": "clint1_1590",
         "passw": "1234",
         "balane": 2050,
-        "block": false,
+        "block": true,
         "opened": "2025/5/6",
         "action": []
     },
