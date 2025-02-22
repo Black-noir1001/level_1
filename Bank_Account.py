@@ -14,6 +14,7 @@ class Bank():
     2. Add new account
     3. Exit
     """
+
     sc_2 = """
     ________________________
     **** Bank Mangement ****
@@ -28,7 +29,6 @@ class Bank():
 
         self.name = 50
     
-
     def clear_screen():
         plat = platform.system().lower()
         if plat == "windows" :
@@ -38,28 +38,28 @@ class Bank():
         else:
             p("not support !!")
 
-    # def read(self , info):
-    #     self.info = info
-    #     list_id = []
-    #     with open("user_data.json" , "r+") as rd :
-    #         j_r = json.load(rd)
-    #         for keys in j_r.keys():
-    #             list_id.append(keys)
-    #         if info == "name" :
-    #             for i in range(len(list_id)):
-    #                 p(f"{i+1} : { j_r[list_id[i]]['name'] }")
-    #         elif info == "id" :
-    #             for i in range(len(list_id)):
-    #                 p(f"{i+1} : { j_r[list_id[i]]['id'] }") 
-    #         elif info == "accout" :
-    #             for i in range(len(list_id)):
-    #                 p(f"{i+1} : { list_id[i] }")
-    #         elif info == "sp_id" :
-    #             yo_se = input("Enter you number to git info :> ")
-    #             p(f">> { j_r[yo_se]}")
-    #         else :
-    #             exit()        
-    #         rd.close()
+    def read(self , info):
+        self.info = info
+        list_id = []
+        with open("user_data.json" , "r+") as rd :
+            j_r = json.load(rd)
+            for keys in j_r.keys():
+                list_id.append(keys)
+            if info == "name" :
+                for i in range(len(list_id)):
+                    p(f"{i+1} : { j_r[list_id[i]]['name'] }")
+            elif info == "id" :
+                for i in range(len(list_id)):
+                    p(f"{i+1} : { j_r[list_id[i]]['id'] }") 
+            elif info == "accout" :
+                for i in range(len(list_id)):
+                    p(f"{i+1} : { list_id[i] }")
+            elif info == "sp_id" :
+                yo_se = input("Enter you number to git info :> ")
+                p(f">> { j_r[yo_se]}")
+            else :
+                exit()        
+            rd.close()
                 
     @staticmethod
     def add_accout():
@@ -95,9 +95,37 @@ class Bank():
             Bank.clear_screen()
             p(Bank.sc_2)
             in_ve = input("::>> ")
-            if in_ve == "1" :
-                Bank.clear_screen()
-                
+            if in_ve == "1"  :
+                def sc2():
+                    nums_list = []
+                    name_list= []
+                    id_list = []
+                    Bank.clear_screen()
+                    file3 = open("user_data.json" , "r+")
+                    rd = json.load(file3)
+                    for nums in rd.keys():
+                        nums_list.append(nums)
+                        for names in rd[nums]["name"] :
+                            name_list.append(rd[nums]["name"])
+                            break
+                        for ids in rd[nums]["id"] :
+                            id_list.append(rd[nums]["id"])
+                            break
+                    for na , nu , i in zip(name_list , nums_list , id_list) :
+                        p("_"*50+f"""\n{na}\t:|:\t{nu}\t:|:\t{i}""")
+                    con2 = input("\nEnter 1.Return 2.Exit :> ")
+                    if con2 == "1" :
+                        Bank.main()  # edit again 
+                    elif con2 == "2" :
+                        exit()
+                    else:
+                        while con2 not in [1,2] :
+                            con2 = input("Enter 1.Return 2.Exit :> ")
+                            if con2 == "1" :
+                                Bank.main()
+                            elif con2 == "2" :
+                                exit()    
+                sc2()                    
             elif in_ve == "2" :
                 Bank.clear_screen()
                 file = open("user_data.json" , "+r")
